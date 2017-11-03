@@ -20,12 +20,11 @@ axis_y = []
 axis_x_3 = []
 for i in xls[xls.columns[0]]:
     if i != 'รวม' and i != 'ภาค' and type(i) is str:
-        if i not in axis_x_3 and len(i) < 30:
+        if i not in axis_x_3 and len(i) < 40:
             axis_x_3.append(i)
 
 # Initialize Bar Chart
-chart = pg.Bar(x_labels_major_count=8, show_minor_x_labels=False, truncate_legend=40, legend_at_bottom=True,
-               truncate_label=20)
+chart = pg.Bar(legend_at_bottom=True)
 
 # Chart title
 chart.title = 'จำนวนการว่างงาน จำแนกตามภาค พ.ศ. 2552 - 2559'
@@ -34,6 +33,7 @@ chart.title = 'จำนวนการว่างงาน จำแนกต�
 chart.x_labels = [x for x in axis_x_3]
 
 # Test2
+k = 0
 for i in xls[xls.columns[1:9]]:
     for j in xls[i]:
         if type(j) is not str:
@@ -42,8 +42,9 @@ for i in xls[xls.columns[1:9]]:
                 axis_y.append(float('%.04f' % j))
 
     # Result
-    chart.add('จำนวนในแต่ละปี', axis_y)
+    chart.add('พ.ศ.' + str(axis_x[k]), axis_y)
     axis_y = []
+    k += 1
 
 # Y-Axis range value
 chart.range = [0, 200]
