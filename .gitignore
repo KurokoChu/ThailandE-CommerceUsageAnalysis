@@ -1,4 +1,6 @@
 ﻿*.jpg
 *.png
-(05)00_S-lfs-y_2559_000_000000_00500.xls
-src/**
+*.xls
+*.rar
+source/**
+backup/**
